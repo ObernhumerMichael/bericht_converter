@@ -31,7 +31,6 @@ def genHASH(file):
             file_hash.update(fb)  # Update the hash
             fb = f.read(BLOCK_SIZE)  # Read the next block from the file
 
-    # print(file_hash.hexdigest())  # Get the hexadecimal digest of the hash
     return file_hash.hexdigest()
 
 
@@ -51,23 +50,21 @@ def isDocumented(dataPath, entry):
     data = readPaths(dataPath)
     if entry in data["path"]:
         id = data["path"].index(entry)
-        time = os.path.getmtime(entry)
         if data["md"][id] and data["hash"][id] == genHASH(entry):
-            print(entry + " | hat sich nicht verändert")
+            print(entry + " | hasn't changed")
         elif data["md"][id]:
             data["hash"][id] = genHASH(entry)
-            print(entry + " | hat sich seit dem letzten mal verändert")
+            print(entry + " | has changed since the last time")
         else:
-            print(entry+" | ist nicht von bedeutung")
+            print(entry+" | isn't relevant")
     else:
-        time = os.path.getmtime(entry)
         data["path"].append(entry)
         data["md"].append(isMD(entry))
         if(isMD(entry)):
             data["hash"].append(genHASH(entry))
         else:
             data["hash"].append("no hash needed")
-        print(entry+" | wurde hinzugefügt")
+        print(entry+" | was appended")
     writeData(dataPath, data)
 
 
