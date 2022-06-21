@@ -1,18 +1,19 @@
 {
   "path": [
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir1",
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir2",
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\test.txt",
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir2\\l2dir2file1.md",
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir2\\l2dir2file2.md",
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir1\\l2dir1file1.md",
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir1\\l2dir1file2.md",
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir1\\l3dir1",
-    "C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir1\\l3dir1\\l3dir2.md"
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir1",
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir2",
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\test.txt",
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir2\\l2dir2file1.md",
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir2\\l2dir2file2.md",
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir1\\l2dir1file1.md",
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir1\\l2dir1file2.md",
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir1\\l3dir1",
+    "C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir1\\l3dir1\\l3dir2.md"
   ],
   "time": [
-    1653060599.0, 1652896203.0, 1655372363.9031641, 1653060599.0, 1653060599.0,
-    1655373284.0815375, 1652896203.0, 1652986076.0, 1652986076.0
+    1655801209.043935, 1655801209.043935, 1655801209.043935, 1655801209.043935,
+    1655801209.043935, 1655801209.043935, 1655801209.043935, 1655801209.043935,
+    1655801209.043935
   ],
   "md": [false, false, false, true, true, true, true, false, true],
   "hash": [
