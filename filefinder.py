@@ -98,8 +98,8 @@ def isDocumented(dataPath, entry):
 
 
 # =================main========================
-start = r"C:\Users\Michael Obernhumer\Documents\prgoramms_selfmade\Skripts\file-finder\l1dir1"
-dataPath = r"C:\Users\Michael Obernhumer\Documents\prgoramms_selfmade\Skripts\file-finder\data.json"
+start = r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter\l1dir1"
+dataPath = r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter\data.json"
 
 time = os.path.getmtime(start)
 print(time)
