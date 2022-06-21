@@ -12,35 +12,11 @@ def readPaths(dataPath):
     return data
 
 
-def writePath(dataPath, data, path):
-    f = open(dataPath, "w")
-    data["path"].append(path)
-    output = json.dumps(data)
-    f.write(output)
-    f.close
-
-
-def writeTime(dataPath, data, time):
-    f = open(dataPath, "w")
-    data["time"].append(time)
-    output = json.dumps(data)
-    f.write(output)
-    f.close
-
-
 def isMD(dataPath):
     if(dataPath[-3:] == (".md")):
         return True
     else:
         return False
-
-
-def writeMD(dataPath, data, status):
-    f = open(dataPath, "w")
-    data["md"].append(status)
-    output = json.dumps(data)
-    f.write(output)
-    f.close
 
 
 def genHASH(file):
@@ -59,16 +35,13 @@ def genHASH(file):
     return file_hash.hexdigest()
 
 
-def writeHASH(dataPath, data, hash):
+def writeData(dataPath, data):
     f = open(dataPath, "w")
-    data["hash"].append(hash)
-    output = json.dumps(data)
-    f.write(output)
+    f.write(json.dumps(data))
     f.close
 
-# TODOS: 
-# Replace modification check using time with hash check
-# perform everyithing in a dict and write everyting at once
+
+# TODOS:
 # add a converter
 # add a path exists functions which checks if the entry is still valid
 # write a log file
@@ -79,22 +52,24 @@ def isDocumented(dataPath, entry):
     if entry in data["path"]:
         id = data["path"].index(entry)
         time = os.path.getmtime(entry)
-        if data["time"][id] != time:  # Erweitern mit HASH
-            # Note: Hier verknüpfung zu Converter bauen
-            data["time"][id] = time
+        # Erweitern mit HASH
+        if data["md"][id] and data["hash"][id] == genHASH(entry):
+            print(entry + " | hat sich nicht verändert")
+        elif data["md"][id]:
+            data["hash"][id] = genHASH(entry)
             print(entry + " | hat sich seit dem letzten mal verändert")
         else:
-            print(entry + " | hat sich nicht verändert")
+            print(entry+" | ist nicht von bedeutung")
     else:
         time = os.path.getmtime(entry)
-        writePath(dataPath, data, entry)
-        writeTime(dataPath, data, time)
-        writeMD(dataPath, data, isMD(entry))
+        data["path"].append(entry)
+        data["md"].append(isMD(entry))
         if(isMD(entry)):
-            writeHASH(dataPath, data,genHASH(entry))
+            data["hash"].append(genHASH(entry))
         else:
-            writeHASH(dataPath,data,"no hash needed")
+            data["hash"].append("no hash needed")
         print(entry+" | wurde hinzugefügt")
+    writeData(dataPath, data)
 
 
 # =================main========================
