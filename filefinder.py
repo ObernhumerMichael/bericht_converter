@@ -42,9 +42,9 @@ def writeData(dataPath, data):
 
 
 # TODOS:
+# write a log file
 # add a converter
 # add a path exists functions which checks if the entry is still valid
-# write a log file
 
 
 def isDocumented(dataPath, entry):
@@ -52,7 +52,6 @@ def isDocumented(dataPath, entry):
     if entry in data["path"]:
         id = data["path"].index(entry)
         time = os.path.getmtime(entry)
-        # Erweitern mit HASH
         if data["md"][id] and data["hash"][id] == genHASH(entry):
             print(entry + " | hat sich nicht verändert")
         elif data["md"][id]:
@@ -73,12 +72,10 @@ def isDocumented(dataPath, entry):
 
 
 # =================main========================
-start = r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter\l1dir1"
-dataPath = r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter\data.json"
-
-time = os.path.getmtime(start)
-print(time)
-
+stdpath=r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter"
+start = stdpath+"\l1dir1"
+dataPath = stdpath+"\data.json"
+logpath=stdpath+"\log.txt"
 
 dirList = ["IV"]
 while(True):
