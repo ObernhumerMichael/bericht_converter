@@ -18,7 +18,7 @@ def writeData(dataPath, data):
     f.write(json.dumps(data))
     f.close
 
-
+    
 def isMD(dataPath):
     if(dataPath[-3:] == (".md")):
         return True
@@ -52,12 +52,10 @@ def writeLog(logPath, log):
     f.write(fullLog)
     f.close
 
-
 def clearLog(logPath):
     f = open(logPath, 'w')
     f.write("")
     f.close()
-
 
 def readMD(path):
     f = open(path, "r")
