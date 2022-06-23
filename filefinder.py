@@ -3,13 +3,20 @@ import os
 from importlib.resources import path
 import json
 import hashlib
+import re
 
 
-def readPaths(dataPath):
+def readData(dataPath):
     f = open(dataPath, 'r')
     data = json.load(f)
     f.close()
     return data
+
+
+def writeData(dataPath, data):
+    f = open(dataPath, "w")
+    f.write(json.dumps(data))
+    f.close
 
 
 def isMD(dataPath):
@@ -34,22 +41,17 @@ def genHASH(file):
     return file_hash.hexdigest()
 
 
-def writeData(dataPath, data):
-    f = open(dataPath, "w")
-    f.write(json.dumps(data))
-    f.close
-
-
 def writeLog(logPath, log):
     f = open(logPath, 'r')
-    fullLog=f.read()
+    fullLog = f.read()
     f.close()
 
-    fullLog=fullLog+'\n'+log
+    fullLog = fullLog+'\n'+log
 
     f = open(logPath, "w")
     f.write(fullLog)
     f.close
+
 
 def clearLog(logPath):
     f = open(logPath, 'w')
@@ -57,17 +59,43 @@ def clearLog(logPath):
     f.close()
 
 
+def readMD(path):
+    f = open(path, "r")
+    content = f.read()
+    f.close()
+    return content
 
-# TODOS:
-# add a converter
-# add a path exists functions which checks if the entry is still valid
+
+def convert(filePath, stylePath, logPath):
+    # gets the Paths
+    content = readMD(stylePath)+"\n"+readMD(filePath)
+    match = re.search(r"(.*\\)", filePath)
+    tempPath = match.group(1)
+    tempPath = tempPath+"temp.md"
+    pdfPath = tempPath[:-2]+"pdf"
+
+    f = open(tempPath, "w")
+    f.write(content)
+    f.close()
+
+    writeLog(logPath, "temp.md for " + filePath+" has been created")
+    os.system('md2pdf "' + tempPath+'"')
+
+    if os.path.exists(pdfPath):
+        writeLog(logPath, "File has been succesfully converted :"+tempPath)
+    else:
+        writeLog(logPath, "temp.md couldn't be converted"+tempPath)
+    os.remove(tempPath)
+    os.rename(pdfPath, filePath[:-2]+"pdf")
+
 
 
 # =================main========================
-stdpath=r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter"
+stdpath = r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter"
 start = stdpath+"\l1dir1"
 dataPath = stdpath+"\data.json"
-logPath=stdpath+"\log.txt"
+logPath = stdpath+"\log.txt"
+stylePath = stdpath+"\style.txt"
 clearLog(logPath)
 
 dirList = ["IV"]
@@ -76,25 +104,27 @@ while(True):
     entries = os.listdir(start)
     for entry in entries:
         entry = start + "\\" + entry
-        data = readPaths(dataPath)
+        data = readData(dataPath)
         if entry in data["path"]:
             id = data["path"].index(entry)
             if data["md"][id] and data["hash"][id] == genHASH(entry):
-                writeLog(logPath,entry + " | hasn't changed")
+                writeLog(logPath, entry + " | hasn't changed")
             elif data["md"][id]:
                 data["hash"][id] = genHASH(entry)
                 # build interface to converter here
-                writeLog(logPath,entry + " | has changed since the last time")
+                convert(entry, stylePath, logPath)
+                writeLog(logPath, entry + " | has changed since the last time")
             else:
-                writeLog(logPath,entry+" | isn't relevant")
+                writeLog(logPath, entry+" | isn't relevant")
         else:
             data["path"].append(entry)
             data["md"].append(isMD(entry))
             if(isMD(entry)):
                 data["hash"].append(genHASH(entry))
+                convert(entry, stylePath, logPath)
             else:
                 data["hash"].append("no hash needed")
-            writeLog(logPath,entry+" | was appended")
+            writeLog(logPath, entry+" | was appended")
         writeData(dataPath, data)
 
         if os.path.isdir(entry):

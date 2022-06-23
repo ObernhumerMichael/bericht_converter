@@ -1,15 +1,29 @@
-path="C:\\Users\\Michael Obernhumer\\Documents\\prgoramms_selfmade\\Skripts\\file-finder\\l1dir1\\l2dir2\\l2dir2file1.md"
-
+import asyncio
+import os
+from importlib.resources import path
+import json
 import hashlib
+import re
+def readMD(path):
+    f=open(path,"r")
+    content=f.read()
+    f.close()
+    return content
 
-file = path # Location of the file (can be set a different way)
-BLOCK_SIZE = 65536 # The size of each read from the file
+def convert(filePath,stylePath):
+    content=readMD(stylePath)+"\n"+readMD(filePath)
+    match=re.search(r"(.*\\)",filePath)
+    tempPath=match.group(1)
+    tempPath=tempPath+"temp.md"
+    print(tempPath)
+    f=open(tempPath,"w")
+    f.write(content)
+    f.close()
 
-file_hash = hashlib.sha256() # Create the hash object, can use something other than `.sha256()` if you wish
-with open(file, 'rb') as f: # Open the file to read it's bytes
-    fb = f.read(BLOCK_SIZE) # Read from the file. Take in the amount declared above
-    while len(fb) > 0: # While there is still data being read from the file
-        file_hash.update(fb) # Update the hash
-        fb = f.read(BLOCK_SIZE) # Read the next block from the file
-
-print (file_hash.hexdigest()) # Get the hexadecimal digest of the hash
+stdpath = r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter"
+start = stdpath+"\l1dir1"
+dataPath = stdpath+"\data.json"
+logPath = stdpath+"\log.txt"
+stylePath=stdpath+"\style.txt"
+filePath="C:\\Users\\Michael Obernhumer\\Documents\\Repository\\bericht_converter\\l1dir1\\l2dir1\\l2dir1file1.md"
+convert(filePath,stylePath)
