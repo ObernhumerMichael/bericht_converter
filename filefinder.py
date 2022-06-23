@@ -1,4 +1,3 @@
-#from asyncore import write
 import asyncio
 import os
 from importlib.resources import path
@@ -60,7 +59,6 @@ def clearLog(logPath):
 
 
 # TODOS:
-# write a log file
 # add a converter
 # add a path exists functions which checks if the entry is still valid
 

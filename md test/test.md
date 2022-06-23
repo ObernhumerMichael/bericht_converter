@@ -1,5 +1,5 @@
 ---
-css: 'img { width: max; }'
+css: 'img { width: max; } a { text-decoration: none }'
 pdf_options:
   format: a4
   margin: 20mm 20mm
@@ -174,3 +174,8 @@ Jjg2ln7s6oTvule2DA8p71MNhVh3bOp38aXYRGvCZafLW6gZ+gcdLm/l4YJ2NRqZk1pmRd
 SPl6lXjGtvvM3Y2o3VDmQgqRicUGzCHVykXKPiQ2Q2rg2Jp6xgKFNJ+mQs3H+EmKo0vKfP
 0RzgJL5uozAVaO0x5JQAkg+DcD5Py08YvThionfna90S9Se
 ```
+[github](https://www.github.com)
+
+
+www.github.com
+
