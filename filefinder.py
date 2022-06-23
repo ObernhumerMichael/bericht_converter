@@ -1,4 +1,5 @@
-from asyncore import write
+#from asyncore import write
+import asyncio
 import os
 from importlib.resources import path
 import json
@@ -40,39 +41,36 @@ def writeData(dataPath, data):
     f.close
 
 
+def writeLog(logPath, log):
+    f = open(logPath, 'r')
+    fullLog=f.read()
+    f.close()
+
+    fullLog=fullLog+'\n'+log
+
+    f = open(logPath, "w")
+    f.write(fullLog)
+    f.close
+
+def clearLog(logPath):
+    f = open(logPath, 'w')
+    f.write("")
+    f.close()
+
+
+
 # TODOS:
 # write a log file
 # add a converter
 # add a path exists functions which checks if the entry is still valid
 
 
-def isDocumented(dataPath, entry):
-    data = readPaths(dataPath)
-    if entry in data["path"]:
-        id = data["path"].index(entry)
-        if data["md"][id] and data["hash"][id] == genHASH(entry):
-            print(entry + " | hasn't changed")
-        elif data["md"][id]:
-            data["hash"][id] = genHASH(entry)
-            print(entry + " | has changed since the last time")
-        else:
-            print(entry+" | isn't relevant")
-    else:
-        data["path"].append(entry)
-        data["md"].append(isMD(entry))
-        if(isMD(entry)):
-            data["hash"].append(genHASH(entry))
-        else:
-            data["hash"].append("no hash needed")
-        print(entry+" | was appended")
-    writeData(dataPath, data)
-
-
 # =================main========================
 stdpath=r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter"
 start = stdpath+"\l1dir1"
 dataPath = stdpath+"\data.json"
-logpath=stdpath+"\log.txt"
+logPath=stdpath+"\log.txt"
+clearLog(logPath)
 
 dirList = ["IV"]
 while(True):
@@ -80,7 +78,27 @@ while(True):
     entries = os.listdir(start)
     for entry in entries:
         entry = start + "\\" + entry
-        isDocumented(dataPath, entry)
+        data = readPaths(dataPath)
+        if entry in data["path"]:
+            id = data["path"].index(entry)
+            if data["md"][id] and data["hash"][id] == genHASH(entry):
+                writeLog(logPath,entry + " | hasn't changed")
+            elif data["md"][id]:
+                data["hash"][id] = genHASH(entry)
+                # build interface to converter here
+                writeLog(logPath,entry + " | has changed since the last time")
+            else:
+                writeLog(logPath,entry+" | isn't relevant")
+        else:
+            data["path"].append(entry)
+            data["md"].append(isMD(entry))
+            if(isMD(entry)):
+                data["hash"].append(genHASH(entry))
+            else:
+                data["hash"].append("no hash needed")
+            writeLog(logPath,entry+" | was appended")
+        writeData(dataPath, data)
+
         if os.path.isdir(entry):
             dirList.append(entry)
     if len(dirList) == 0:
