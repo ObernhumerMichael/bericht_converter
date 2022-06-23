@@ -1,26 +1,38 @@
 ---
+css: 'img { width: max; }'
 pdf_options:
   format: a4
-  margin: 30mm 20mm
+  margin: 20mm 20mm
   printBackground: true
   headerTemplate: |-
     <style>
       section {
-        margin: 0 auto;
+        display: table;
+        width: 100%;
+        table-layout: fixed;
         font-family: system-ui;
-        font-size: 11px;
+        font-size: 10px;
+        font-style:italic;
+      }
+      .moStyle {
+        display: table-cell;
+        text-align: center;
       }
     </style>
+
     <section>
-      <span class="title"></span>
-      <span class="date"></span>
+      <span class="moStyle">Michael Obernhumer</span>
+      <span class="moStyle">3 AHITS</span>
+      <span class="moStyle">23.06.2022</span>
     </section>
   footerTemplate: |-
     <section>
-      <div>
-        Page <span class="pageNumber"></span>
-        of <span class="totalPages"></span>
-      </div>
+      <span class="moStyle"></span>
+      <span class="moStyle"></span>
+      <span class="moStyle">
+        <span class="pageNumber"></span>
+        /<span class="totalPages"></span>
+      </span>
     </section>
 ---
 
@@ -28,13 +40,23 @@ pdf_options:
 <span style="color:orange ;font-size:35px"><u>3-SYTB-2-MATE 002.04 Übungen</u></span>
 
 Name: Michael Obernhumer 
+
 Klasse: 3 AHITS 
+
 Fach: SYTB MATE 
+
 Datum: 3.2.2022
 
 <span style="font-size:25px">Inhaltsverzeichnis:</span>
 
-[TOC]
+- [1 Übung (Zufälliges Wort)](#1-übung-zufälliges-wort)
+  - [1.1 Lösung](#11-lösung)
+- [2 Übung (dated copy V1)](#2-übung-dated-copy-v1)
+  - [2.1 Lösung](#21-lösung)
+- [3 Übung (dated copy V2)](#3-übung-dated-copy-v2)
+  - [3.1 Lösung](#31-lösung)
+- [4 Übung (dated copy V3)](#4-übung-dated-copy-v3)
+  - [4.1 Lösung](#41-lösung)
 
 # 1 Übung (Zufälliges Wort)
 Erstelle ein Skript das einen Satz aus 5 zufälligen Wörtern bildet, z.B.:
@@ -136,3 +158,19 @@ done
 **Ausgaben (Filename)**
 - `wortliste1000_2022-02-03.txt`
 - `Text_2022-02-03.txt`
+
+
+![Browser Fenster](./3%20INSY%20MATE-ITS%20008.00%20ssh%20tunneling.png)
+
+
+```sh
+┌──(kali㉿kali)-[~/.ssh]
+└─$ cat id_rsa  
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+NhAAAAAwEAAQAAAYEA2GOdTHKZulAnmBNYaVgifZmkR/KjePLJsrLYw/dP2CBdat7hfrFQ
+uzBX+mlufrmY2wLNHzqp7qqhZA71KTTiRuEEDpLICWJBCfBAEK9488lTN0hITOh7DeYnIw
+Jjg2ln7s6oTvule2DA8p71MNhVh3bOp38aXYRGvCZafLW6gZ+gcdLm/l4YJ2NRqZk1pmRd
+SPl6lXjGtvvM3Y2o3VDmQgqRicUGzCHVykXKPiQ2Q2rg2Jp6xgKFNJ+mQs3H+EmKo0vKfP
+0RzgJL5uozAVaO0x5JQAkg+DcD5Py08YvThionfna90S9Se
+```
