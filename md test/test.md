@@ -1,3 +1,41 @@
+---
+css: 'img { width: max; } a { text-decoration: none }'
+pdf_options:
+  format: a4
+  margin: 20mm 20mm
+  printBackground: true
+  headerTemplate: |-
+    <style>
+      section {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        font-family: system-ui;
+        font-size: 10px;
+        font-style:italic;
+      }
+      .moStyle {
+        display: table-cell;
+        text-align: center;
+      }
+    </style>
+
+    <section>
+      <span class="moStyle">Michael Obernhumer</span>
+      <span class="moStyle">3 AHITS</span>
+      <span class="moStyle">23.06.2022</span>
+    </section>
+  footerTemplate: |-
+    <section>
+      <span class="moStyle"></span>
+      <span class="moStyle"></span>
+      <span class="moStyle">
+        <span class="pageNumber"></span>
+        /<span class="totalPages"></span>
+      </span>
+    </section>
+---
+
 
 <span style="color:orange ;font-size:35px"><u>3-SYTB-2-MATE 002.04 Übungen</u></span>
 
