@@ -7,14 +7,14 @@ import re
 
 
 def readData(dataPath):
-    f = open(dataPath, 'r')
+    f = open(dataPath, 'r' , encoding="UTF-8")
     data = json.load(f)
     f.close()
     return data
 
 
 def writeData(dataPath, data):
-    f = open(dataPath, "w")
+    f = open(dataPath, "w" , encoding="UTF-8")
     f.write(json.dumps(data))
     f.close
 
@@ -42,23 +42,23 @@ def genHASH(file):
 
 
 def writeLog(logPath, log):
-    f = open(logPath, 'r')
+    f = open(logPath, 'r', encoding="UTF-8")
     fullLog = f.read()
     f.close()
 
     fullLog = fullLog+'\n'+log
 
-    f = open(logPath, "w")
+    f = open(logPath, "w", encoding="UTF-8")
     f.write(fullLog)
     f.close
 
 def clearLog(logPath):
-    f = open(logPath, 'w')
+    f = open(logPath, 'w', encoding="UTF-8")
     f.write("")
     f.close()
 
 def readMD(path):
-    f = open(path, "r")
+    f = open(path, "r" , encoding='utf-8')
     content = f.read()
     f.close()
     return content
@@ -72,7 +72,11 @@ def convert(filePath, stylePath, logPath):
     tempPath = tempPath+"temp.md"
     pdfPath = tempPath[:-2]+"pdf"
 
-    f = open(tempPath, "w")
+    # Checks if there is a already a file with the same name
+    if os.path.exists(filePath[:-2]+"pdf"):  
+        os.remove(filePath[:-2]+"pdf")
+
+    f = open(tempPath, "w",encoding="UTF-8")
     f.write(content)
     f.close()
 
@@ -90,7 +94,7 @@ def convert(filePath, stylePath, logPath):
 
 # =================main========================
 stdpath = r"C:\Users\Michael Obernhumer\Documents\Repository\bericht_converter"
-start = stdpath+"\l1dir1"
+start = stdpath+r"\Fächer"
 dataPath = stdpath+"\data.json"
 logPath = stdpath+"\log.txt"
 stylePath = stdpath+"\style.txt"
@@ -109,7 +113,6 @@ while(True):
                 writeLog(logPath, entry + " | hasn't changed")
             elif data["md"][id]:
                 data["hash"][id] = genHASH(entry)
-                # build interface to converter here
                 convert(entry, stylePath, logPath)
                 writeLog(logPath, entry + " | has changed since the last time")
             else:

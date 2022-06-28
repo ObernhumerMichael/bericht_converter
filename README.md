@@ -10,4 +10,4 @@
 If md-to-pdf was installed via npm use `npm i -g md-to-pdf@latest` to update otherwise see the [GitHub](https://github.com/simonhaenisch/md-to-pdf.git)
 
 ## Config
-If you want to configer the PDF output see the [GitHub](https://github.com/simonhaenisch/md-to-pdf.git) bzw. the `style.txt`
+If you want to configer the PDF output see the [GitHub](https://github.com/simonhaenisch/md-to-pdf.git) or the `style.txt`
